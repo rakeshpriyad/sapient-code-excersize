@@ -6,8 +6,8 @@ import com.test.predqm.translator.InputTranslator;
 public class CustomerFileReader extends PreDQMFileReader<Customer> {
 	private InputTranslator<Customer> translator;
 
-	public CustomerFileReader(InputTranslator<Customer> translator) {
-		super(translator);
+	public CustomerFileReader(InputTranslator<Customer> translator, String inputFileName) {
+		super(translator,inputFileName);
 	}
 
 	public InputTranslator<Customer> getTranslator() {

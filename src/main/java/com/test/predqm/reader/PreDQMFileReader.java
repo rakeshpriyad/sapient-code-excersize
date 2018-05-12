@@ -11,12 +11,14 @@ import com.test.predqm.translator.InputTranslator;
 public class PreDQMFileReader<T> implements FileReader<T> {
 
 	private InputTranslator<T> translator;
+	private String fileName;
 	
-	public PreDQMFileReader(InputTranslator<T> translator){
+	public PreDQMFileReader(InputTranslator<T> translator, String fileName){
 		this.translator = translator;
+		this.fileName = fileName;
 	}
 
-	public List<T> read(String fileName) {
+	public List<T> read() {
 		if(fileName == null) {
 			throw new NullPointerException("File name can not be null");
 		}
@@ -40,6 +42,14 @@ public class PreDQMFileReader<T> implements FileReader<T> {
 			}
 		}
 		return items;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 }

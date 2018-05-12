@@ -8,16 +8,18 @@ import com.test.predqm.translator.OutputTranslator;
 import static com.test.predqm.constant.Constants.NEWLINE;
 
 public class PreDQMFileWriter<T> implements OutputWriter<T> {
-	OutputTranslator<T> translator;
-
-	public PreDQMFileWriter(OutputTranslator<T> translator) {
+	private OutputTranslator<T> translator;
+	private String outputFileName;
+	
+	public PreDQMFileWriter(OutputTranslator<T> translator, String outputFileName) {
 		this.translator = translator;
+		this.outputFileName = outputFileName;
 	}
 
-	public boolean write(List<T> list, String fileName) {
+	public boolean write(List<T> list) {
 		FileWriter fw = null;
 		try {
-			fw = new FileWriter(fileName);
+			fw = new FileWriter(outputFileName);
 			for (T t : list) {
 				String line = translator.translateToLine(t);
 				fw.write(line + NEWLINE);

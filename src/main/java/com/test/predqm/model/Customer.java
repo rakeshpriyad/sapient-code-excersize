@@ -24,5 +24,9 @@ public class Customer {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", address=" + address + "]";
+	}
 	
 }
