@@ -10,7 +10,10 @@ import com.test.predqm.processor.ItemProcessor;
 import com.test.predqm.reader.CustomerFileReader;
 import com.test.predqm.translator.CustomerInputTranslator;
 import com.test.predqm.translator.CustomerOutputTranslator;
+import com.test.predqm.utils.PropertyUtils;
 import com.test.predqm.writer.CustomerFileWriter;
+import static com.test.predqm.constant.Constants.INPUT_FILE_NAME;
+import static com.test.predqm.constant.Constants.OUTPUT_FILE_NAME;
 
 public class PreDMQMJobHandler {
 
@@ -19,8 +22,10 @@ public class PreDMQMJobHandler {
 	}
 
 	public static void handleCustomerJob() {
-		String inputFileName = "C:\\Users\\aayushraj\\Desktop\\file\\" + "customer.txt";
-		String outputFileName = "C:\\Users\\aayushraj\\Desktop\\file\\" + "customer2.txt";
+		
+		PropertyUtils properties = new PropertyUtils("G:\\\\RAKESH\\\\rajesh-ws\\\\PREDQM\\\\resources\\\\application.properties");
+		String inputFileName = properties.getProperty(INPUT_FILE_NAME) + "customer.csv" ;//"C:\\Users\\aayushraj\\Desktop\\file\\" + "customer.txt";
+		String outputFileName = properties.getProperty(OUTPUT_FILE_NAME) + "outputcustomer.csv";//"C:\\Users\\aayushraj\\Desktop\\file\\" + "customer2.txt";
 		JobParameter parameter = new JobParameter();
 		CustomerJobLauncher cLauncher = new CustomerJobLauncher(parameter);
 		
@@ -33,10 +38,8 @@ public class PreDMQMJobHandler {
 		CustomerFileWriter writer = new CustomerFileWriter(outputTranslator, outputFileName);
 		writer.write(reader.read());
 		
-		
 		CustomerDataJob cJob = new CustomerDataJob(reader, processor, writer);
 		JobStatus status = cLauncher.launch(cJob);
 		System.out.println(status);
 	}
-
 }

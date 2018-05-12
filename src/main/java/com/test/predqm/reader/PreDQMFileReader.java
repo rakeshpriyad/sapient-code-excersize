@@ -19,7 +19,7 @@ public class PreDQMFileReader<T> implements FileReader<T> {
 	}
 
 	public List<T> read() {
-		if(fileName == null) {
+		if(this.fileName == null) {
 			throw new NullPointerException("File name can not be null");
 		}
 		
