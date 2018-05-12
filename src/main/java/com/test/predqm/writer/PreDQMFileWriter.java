@@ -36,7 +36,7 @@ public class PreDQMFileWriter<T> implements OutputWriter<T> {
 			}
 		}
 		System.out.println("Success...");
-		return false;
+		return true;
 	}
 
 }
